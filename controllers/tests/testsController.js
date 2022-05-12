@@ -33,7 +33,7 @@ router.get('/find-tests', async (req, res) => {
 })
 
 router.post('/new-test', async (req, res) => {
-  const { type, userId } = req.body
+  const { type, completedWords, userId } = req.body
 
   try {
     const newDate = moment()
@@ -41,6 +41,7 @@ router.post('/new-test', async (req, res) => {
     const newTest = await Test.create({
       type,
       date: newDate,
+      completedWords,
       completed: 0,
       userId
     })
@@ -48,6 +49,40 @@ router.post('/new-test', async (req, res) => {
     return res.status(200).json(newTest)
   } catch (err) {
     return res.status(500).json({ message: 'Error' })
+  }
+})
+
+router.put('/update-test', async (req, res) => {
+  const { id, completedWords } = req.body
+
+  console.log(req.body)
+
+  try {
+    const newTest = await Test.update({
+      completedWords
+    }, {where: {
+      id
+    }})
+
+    return res.status(200).json(newTest)
+  } catch (err) {
+    return res.status(500).json({ message: 'Error', error: err })
+  }
+})
+
+router.get('/unfinished-test', async (req, res) => {
+  const { id } = req.query
+
+  try {
+    const unfinishedTests = await Test.findAll({
+      where: {
+        userId: id,
+        completed: 0
+    }})
+
+    return res.status(200).json(unfinishedTests)
+  } catch (err) {
+    return false
   }
 })
 

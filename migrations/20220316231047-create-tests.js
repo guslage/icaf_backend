@@ -17,6 +17,10 @@ module.exports = {
         type: Sequelize.DATEONLY,
         allowNull: false
       },
+      completedWords: {
+        type: Sequelize.TEXT,
+        allowNull: true
+      },
       completed: {
         type: Sequelize.BOOLEAN,
         allowNull: false
