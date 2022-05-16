@@ -1,11 +1,12 @@
-
 const express = require('express')
+
 const fileUpload = require('express-fileupload');
 const cors = require('cors')
 
 const bodyParser = require('body-parser')
 const controllers = require('./controllers')
 const fs = require('fs')
+const getStat = require('util').promisify(fs.stat);
 const { readdirSync, rename } = require('fs');
 const moment = require('moment')
 
@@ -112,6 +113,32 @@ app.post('/upload', (req, res) => {
 
     return res.send({ name: myFile.name, path: `/${myFile.name}` });
   });
+})
+
+
+app.get('/audio', async (req, res) => {
+  const { audio } = req.query
+
+  const highWaterMark =  2;
+
+  const filePath = `${__dirname}${audio}`
+
+  const stat = await getStat(filePath);
+    console.log(stat);    
+    
+    // informações sobre o tipo do conteúdo e o tamanho do arquivo
+    res.writeHead(200, {
+        'Content-Type': 'audio/ogg',
+        'Content-Length': stat.size
+    });
+
+    const stream = fs.createReadStream(filePath, { highWaterMark });
+
+    // só exibe quando terminar de enviar tudo
+    stream.on('end', () => console.log('acabou'));
+
+    // faz streaming do audio 
+    stream.pipe(res);
 })
 
 
