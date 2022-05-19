@@ -86,31 +86,5 @@ router.get('/unfinished-test', async (req, res) => {
   }
 })
 
-router.get('/get-audio', function (req, res) {
-  var musicPath = "http://127.0.0.1:3333/public/users/guslage/naming/test_31/tapete.mp3"; //change this path to your music file.
-  var onclickHTML = "var audio = new Audio('" + sound + "'); audio.play();"
-
-
-  res.send('<button onclick="' + onclickHTML + '">click me to hear music</button>'); //this creates a button that the user can click to play some audio.
-})
-
-// router.get('/get-test', async (req, res) => {
-//   const { type, date, userId } = req.query
-
-//   try {
-//     const test = await Test.findOne({
-//       where: {
-//         type,
-//         date,
-//         userId,
-//         completed: 1
-//       }
-//     }) 
-
-//     return res.status(200).json(test)
-//   } catch(err) {
-//     return res.status(500).json(err)
-//   }
-// })
 
 module.exports = router
