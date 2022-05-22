@@ -2,17 +2,27 @@ const express = require('express')
 
 const fileUpload = require('express-fileupload');
 const cors = require('cors')
+const { google } = require('googleapis')
 
 const bodyParser = require('body-parser')
 const controllers = require('./controllers')
 const fs = require('fs')
 const getStat = require('util').promisify(fs.stat);
 const { readdirSync, rename } = require('fs');
-const moment = require('moment')
+const moment = require('moment');
+const { Console } = require('console');
 
 const app = express()
 app.use(cors());
 const port = 3333
+
+const KEYFILEPATTH = `${__dirname}/icaf-sotrage-cc16d45485e3.json`
+const SCOPES = ['https://www.googleapis.com/auth/drive']
+
+const auth = new google.auth.GoogleAuth({
+  keyFile: KEYFILEPATTH,
+  scopes: SCOPES
+})
 
 app.use(bodyParser.json())
 
@@ -34,6 +44,11 @@ app.post('/upload', (req, res) => {
   if (!req.files) {
     return res.status(500).send({ msg: "file is not found" })
   }
+
+  //Upload de arquivos para o google drive
+
+  //Upload de arquivos para o google drive
+
   const myFile = req.files.file;
 
   const { username, word, test, wordId, testType } = req.body
@@ -82,6 +97,39 @@ app.get('/audio', async (req, res) => {
 
     // faz streaming do audio 
     stream.pipe(res);
+})
+
+
+app.get('/driveTest', async (req, res) => {
+  try {
+    
+  
+    const fileMetaData = {
+      name: 'test/test.PNG',
+      parents: ['17ZBmHo3mW_IfRLS-s1UTZWKMZum_CCzB']
+    }
+  
+    const media = {
+      mimeType: 'image/png',
+      body: fs.createReadStream('diagramaaaa.PNG')
+    }
+  
+    try {
+      const response = await driveService.files.create({
+        resource: fileMetaData,
+        media,
+        fields: 'id'
+      })  
+
+      return res.send({ message: 'success' });
+    } catch(err) {
+      console.log(err)
+      return res.send({ error: err });
+    }
+  } catch(err) {
+    console.log(err)
+    return res.send({ error2: err });
+  }
 })
 
 

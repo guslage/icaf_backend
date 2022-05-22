@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "icaf-sotrage",
+  "private_key_id": "cc16d45485e3a49abf2ae19dc26343e587e3a780",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCIwuYE+N2f8uCT\ndV4GBnhjd/n6ajKfquTVojTk1rN6O0+72Lyq8x3dCxQWGmWkS02GZuI70jrwxoyL\n6v44wWj9vSsTrW/PlpkJ+1esmUjzOQlkbzBG86Sk89TE1I6n4pTHAVnDFe5GK7uP\nWcvwlZa5b5II6lKtg2r6Q0q4c0YPQNBo+HWXoDKYqt7/G1e3OvQ9R+MTfPljGXRA\nGaa4lriiMXJJVoNBV8qVmuEjpd2JayAOogyduATEl0rPoQGhHxKW3y1ttB/2QLTb\nE4U1VTOCUp41xBo2qFYk7Nb5zrRt32ZA+WQ4UB+ojcCpHCkEIG4dCvZSqrJu9XX5\nVudM2ApTAgMBAAECggEAJPU6cOSKC9P4UZEZmBo+hW7iPIRfatulXIApuB+3P9Rw\nbyyai74Id3grdO+sQRJigGwkPhNJf1DAoX0fN1o5E7z/u6EWgqxJbjOglVGVL7ld\nqukLTFlCSJtmB80DQiZOm1rnlXtDOW5PEOWs4bajFTir58HfFunZSolN03u/VpaB\nuN6elR2zhmqcQoHF6t7AGnxbrHtQZkXH3uxKDmaYaePG+dKSRSoDFpFQFk+RjF/T\nstFkousH+Mn4GtE3kiXY3zoDU3Hxh4xnsoZVtNZA5DVumHcju/n+DW1u2l94rxhL\nfkMdL5kwUmdpnFIIBII1bfuZhchk725i8LDcH0+55QKBgQC9BwLKEEIFA45ZP1va\n5cHdFIn9mNUSD/xE8mfzD34PxSyJEeO6IAJHpgCDPZpEqv4JxaqSpCwajDNXUH4A\nE33tT7cfXbcRdSuKfY3/FvFn2lilIp2CAADTFOMlNgxBgE/nd7Ei0MTZB0svdk3E\nXhm4iVjkZZQl7wy+v7gHhXDUDQKBgQC5N0yDu0j6axjMPi7MDo5gGfSGkIw1ym9Z\nt8ZfUImTQPh/ESoXdPNNdaognbnmtU/AC9JuAk+W/iGxPUbGnbuy2KMxm2+0WbHO\nuxJq8th6UfHSxXXnlv3dKs0LrtbDooTtdw/2X9AGC4NeDepwB/JBu/OV/GlIzbbM\nW1Ma9Djf3wKBgDXFj8qRU2Z/u3ex6VxcrYhJdnOYjUwlFfs7Bc0D5DVyPpgDaceh\noWRmWZD77i2IgtmezEYIw68NoPE+qYk2AkWGvq4Ch7hEn4026DTffu6vEzZuoWXA\nwHtLXs5QEK51ZMWQq+gegVDHnWC0A61Po3t2Pr5CEyGzXenJOf2RvSXlAoGAdXZf\nnS+6ka44FNfe3+TfYI01ad3kPfz7b1/AfBRcm7nZnuRo2GWAJADae0LscidMw5P7\nyW7HwQ+8mGYvK6k/L6Z6oOxeBHfZ7yzu+kq3BaRQhAZcxxoYOBp73cvtQjcgrGUV\nB4AuMpc8ofqbUp+HgS7MxbNFpjlok+PbKb33D+sCgYBToFVQHyBJ/FM7tQyiW3d8\nuezFHHXCFWMvhc/o/l5B6lTrZAae9t/015ZmWhL9c6orF2/6rRAH0NKm/EsnJfol\nonwECSAhyapN2g6C2kU6ULbDh5zGud3PI7RU64+zyYenUK5hW5c7LvtHlxV7Z2fQ\nuOPa6k82fmWENye/5k1Zxg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "icaf-storage@icaf-sotrage.iam.gserviceaccount.com",
+  "client_id": "117097636238554582254",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/icaf-storage%40icaf-sotrage.iam.gserviceaccount.com"
+}
