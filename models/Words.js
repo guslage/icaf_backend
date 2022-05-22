@@ -1,5 +1,5 @@
 const Word = (sequelize, DataTypes) => {
-  return sequelize.define('word', {
+  return sequelize.define('Word', {
     description: DataTypes.STRING,
     filename: DataTypes.STRING
   }, {
