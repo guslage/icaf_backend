@@ -1,11 +1,11 @@
 const { Router } = require('express')
-const { Pseudoword } = require('../../models')
+const { pseudoword } = require('../../models')
 const { Op } = require('sequelize')
 
 const router = Router()
 
 router.get('/', async (req, res) => {
-    const pseudowords = await Pseudoword.findAll()
+    const pseudowords = await pseudoword.findAll()
 
     console.log(pseudowords)
 

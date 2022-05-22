@@ -1,10 +1,10 @@
 const { Router } = require('express')
-const { Result, Word, Transcription, sequelize } = require('../../models')
+const { result, Word, transcription, sequelize } = require('../../models')
 
 const router = Router()
 
 router.get('/', async (req, res) => {
-  const transcriptions = await Result.findAll()
+  const transcriptions = await result.findAll()
 
   res.status(200).json(transcriptions)
 })
@@ -18,14 +18,14 @@ router.post('/new-results', async (req, res) => {
   console.log(test)
 
   try {
-    const newResults = await Result.create({
+    const newresults = await result.create({
       audio: audio,
       wordId: word,
       transcriptionId: transcription,
       testId: test
     })
 
-    return res.status(200).json(newResults)
+    return res.status(200).json(newresults)
   } catch (err) {
     return res.status(500).json({ message: 'Error', data: err })
   }

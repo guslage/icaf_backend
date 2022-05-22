@@ -1,5 +1,5 @@
-const Test = (sequelize, DataTypes) => {
-  return sequelize.define('Test', {
+const test = (sequelize, DataTypes) => {
+  return sequelize.define('test', {
     type: DataTypes.STRING,
     date: DataTypes.DATEONLY,
     completedWords: DataTypes.TEXT,
@@ -10,4 +10,4 @@ const Test = (sequelize, DataTypes) => {
   })
 }
 
-module.exports = Test
+module.exports = test

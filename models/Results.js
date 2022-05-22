@@ -1,5 +1,5 @@
-const Result = (sequelize, DataTypes) => {
-  return sequelize.define('Result', {
+const result = (sequelize, DataTypes) => {
+  return sequelize.define('result', {
     audio: DataTypes.STRING,
     wordId: DataTypes.INTEGER,
     transcriptionId: DataTypes.INTEGER,
@@ -9,4 +9,4 @@ const Result = (sequelize, DataTypes) => {
   })
 }
 
-module.exports = Result
+module.exports = result

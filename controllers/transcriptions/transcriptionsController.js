@@ -1,10 +1,10 @@
 const { Router } = require('express')
-const { Transcription } = require('../../models')
+const { transcription } = require('../../models')
 
 const router = Router()
 
 router.get('/', async (req, res) => {
-  const transcriptions = await Transcription.findAll()
+  const transcriptions = await transcription.findAll()
 
   res.status(200).json(transcriptions)
 })
@@ -13,7 +13,7 @@ router.post('/new-transcription', async (req, res) => {
   const { userId, wordId, transcription } = req.body
 
   try {
-    const findTranscription = await Transcription.findAll({
+    const findtranscription = await transcription.findAll({
       where: {
         description: transcription,
         wordId: wordId,
@@ -21,17 +21,17 @@ router.post('/new-transcription', async (req, res) => {
       }
     })
 
-    if (findTranscription.length > 0) {
+    if (findtranscription.length > 0) {
       return res.status(404).json({ message: 'The requested transcription already exists' })
     }
 
-    const newTranscription = await Transcription.create({
+    const newtranscription = await transcription.create({
       description: transcription,
       wordId: wordId,
       userId: userId,
     })
 
-    return res.status(200).json({ message: 'New transcription saved successfully', data: newTranscription })
+    return res.status(200).json({ message: 'New transcription saved successfully', data: newtranscription })
   } catch (err) {
     console.log(err)
     return res.status(500).json(err)
@@ -42,7 +42,7 @@ router.get('/find-transcriptions', async (req, res) => {
   try {
     const { userId, wordId } = req.query
 
-    const transcriptions = await Transcription.findAll({
+    const transcriptions = await transcription.findAll({
       where: {
         userId,
         wordId
