@@ -16,7 +16,7 @@ router.get('/find-tests', async (req, res) => {
   const { type, userId } = req.query
 
   try {
-    const test = await test.findAll({
+    const response = await test.findAll({
       where: {
         type,
         userId,
@@ -24,7 +24,7 @@ router.get('/find-tests', async (req, res) => {
       }
     }) 
 
-    return res.status(200).json(test)
+    return res.status(200).json(response)
   } catch(err) {
     return res.status(404).json({message: err, test: 'alo'})
   }
