@@ -10,12 +10,12 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/new-transcription', async (req, res) => {
-  const { userId, wordId, transcription } = req.body
+  const { userId, wordId, description } = req.body
 
   try {
     const findtranscription = await transcription.findAll({
       where: {
-        description: transcription,
+        description,
         wordId: wordId,
         userId: userId
       }
@@ -26,7 +26,7 @@ router.post('/new-transcription', async (req, res) => {
     }
 
     const newtranscription = await transcription.create({
-      description: transcription,
+      description,
       wordId: wordId,
       userId: userId,
     })
