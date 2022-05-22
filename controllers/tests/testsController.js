@@ -26,7 +26,7 @@ router.get('/find-tests', async (req, res) => {
 
     return res.status(200).json(test)
   } catch(err) {
-    return res.status(500).json(err)
+    return res.status(404).json({message: err, test: 'alo'})
   }
 })
 
