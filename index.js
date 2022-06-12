@@ -99,13 +99,16 @@ app.get('/audio', async (req, res) => {
     stream.pipe(res);
 })
 
-
 app.get('/driveTest', async (req, res) => {
   try {
-    
+    console.log(req)
+    const driveService = google.drive({
+      version: 'v3',
+      auth
+    })
   
     const fileMetaData = {
-      name: 'test/test.PNG',
+      name: 'test/Imagem de teste.PNG',
       parents: ['17ZBmHo3mW_IfRLS-s1UTZWKMZum_CCzB']
     }
   
@@ -131,7 +134,5 @@ app.get('/driveTest', async (req, res) => {
     return res.send({ error2: err });
   }
 })
-
-
 
 app.listen(port, () => console.log(`App running on port ${port}`))
