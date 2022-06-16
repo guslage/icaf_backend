@@ -1,12 +1,12 @@
 const { Router } = require('express')
-const { User } = require('../../models')
+const { user } = require('../../models')
 const fs = require('fs')
 const moment = require('moment')
 
 const router = Router()
 
 router.get('/', async (req, res) => {
-  const users = await User.findAll()
+  const users = await user.findAll()
 
   res.status(200).json(users)
 })
@@ -14,15 +14,15 @@ router.get('/', async (req, res) => {
 router.post('/find-user', async (req, res) => {
   const { username, password } = req.body
 
-  const findUser = await User.findOne({
+  const finduser = await user.findOne({
     where: {
       username,
       password
     }
   })
 
-  if (findUser) {
-    return res.status(200).json({ message: 'User found!', data: findUser })
+  if (finduser) {
+    return res.status(200).json({ message: 'user found!', data: finduser })
   }
 
   return res.status(404).json({ message: 'Invalid data.' })
@@ -34,18 +34,18 @@ router.post('/new-user', async (req, res) => {
 
   const newDate = moment(birthDate).format("MM-DD-YYYY")
 
-  const findUser = await User.findAll({
+  const finduser = await user.findAll({
     where: {
       username,
       password
     }
   })
 
-  if (findUser.length > 0) {
+  if (finduser.length > 0) {
     return res.status(500).json({ message: 'This user already exists!' })
   }
 
-  await User.create({
+  await user.create({
     name,
     school,
     birthDate: newDate,
@@ -62,7 +62,7 @@ router.post('/new-user', async (req, res) => {
     fs.mkdirSync(userDir, { recursive: true })
   }
 
-  return res.status(200).json({ message: 'User registered sucessfully!' })
+  return res.status(200).json({ message: 'user registered sucessfully!' })
 })
 
 module.exports = router

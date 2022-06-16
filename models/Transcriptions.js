@@ -1,5 +1,5 @@
-const Transcription = (sequelize, DataTypes) => {
-  return sequelize.define('Transcription', {
+const transcription = (sequelize, DataTypes) => {
+  return sequelize.define('transcription', {
     description: DataTypes.STRING,
     wordId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER
@@ -8,4 +8,4 @@ const Transcription = (sequelize, DataTypes) => {
   })
 }
 
-module.exports = Transcription
+module.exports = transcription

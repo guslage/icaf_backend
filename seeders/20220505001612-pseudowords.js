@@ -15,7 +15,7 @@ module.exports = {
     ]
 
     for(const word of pseudowords) {
-      await queryInterface.bulkInsert('Pseudowords', [{
+      await queryInterface.bulkInsert('pseudowords', [{
         description: word,
         filename: `/assets/images/pseudowords/${word}.png`
       }], {})
@@ -37,6 +37,6 @@ module.exports = {
      *
      * Example:
      */
-    await queryInterface.bulkDelete('Pseudowords', null, {});
+    await queryInterface.bulkDelete('pseudowords', null, {});
   }
 };

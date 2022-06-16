@@ -1,11 +1,11 @@
 const { Router } = require('express')
-const { Word } = require('../../models')
+const { word } = require('../../models')
 const { Op } = require('sequelize')
 
 const router = Router()
 
 router.get('/', async (req, res) => {
-    const words = await Word.findAll()
+    const words = await word.findAll()
 
   return res.status(200).json(words)
 })
@@ -23,7 +23,7 @@ router.get('/find-words', async (req, res) => {
     notIn.push(previousWords[key])
   })
 
-  const words = await Word.findAll({
+  const words = await word.findAll({
     where: {
       id: {
         [Op.notIn]: notIn
@@ -37,7 +37,7 @@ router.get('/find-words', async (req, res) => {
 router.post('/new-word', async (req, res) => {
   const { wordId, newWord } = req.body
 
-  const findWord = await Word.findAll({
+  const findWord = await word.findAll({
     where: {
       description: newWord
     }
@@ -47,7 +47,7 @@ router.post('/new-word', async (req, res) => {
     return res.status(404).json({ message: 'The requested word already exists' })
   }
 
-  await Word.create({
+  await word.create({
     id: wordId,
     description: newWord
   })
