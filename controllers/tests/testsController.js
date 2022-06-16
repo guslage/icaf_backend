@@ -1,7 +1,7 @@
 
 
 const { Router } = require('express')
-const { Test } = require('../../models')
+const { test } = require('../../models')
 const moment = require('moment')
 const { google } = require('googleapis')
 
@@ -21,7 +21,7 @@ const driveService = google.drive({
 const router = Router()
 
 router.get('/', async (req, res) => {
-  const tests = await Test.findAll()
+  const tests = await test.findAll()
 
   res.status(200).json(tests)
 })
@@ -30,7 +30,7 @@ router.get('/find-tests', async (req, res) => {
   const { type, userId } = req.query
 
   try {
-    const test = await Test.findAll({
+    const response = await test.findAll({
       where: {
         type,
         userId,
@@ -38,9 +38,9 @@ router.get('/find-tests', async (req, res) => {
       }
     }) 
 
-    return res.status(200).json(test)
+    return res.status(200).json(response)
   } catch(err) {
-    return res.status(500).json(err)
+    return res.status(404).json({message: err, test: 'alo'})
   }
 })
 
@@ -52,7 +52,7 @@ router.post('/new-test', async (req, res) => {
   try {
     const newDate = moment()
 
-    const newTest = await Test.create({
+    const newtest = await test.create({
       type,
       date: newDate,
       completedWords,
@@ -60,7 +60,7 @@ router.post('/new-test', async (req, res) => {
       userId
     })
 
-    return res.status(200).json(newTest)
+    return res.status(200).json(newtest)
   } catch (err) {
     return res.status(500).json({ message: 'Error', error: err })
   }
@@ -74,13 +74,13 @@ router.put('/update-test', async (req, res) => {
   console.log(req.body)
 
   try {
-    const newTest = await Test.update({
+    const newtest = await test.update({
       completedWords
     }, {where: {
       id
     }})
 
-    return res.status(200).json(newTest)
+    return res.status(200).json(newtest)
   } catch (err) {
     return res.status(500).json({ message: 'Error', error: err })
   }
@@ -90,13 +90,13 @@ router.put('/finish-test', async (req, res) => {
   const { id } = req.body
 
   try {
-    const finishTest = await Test.update({
+    const finishtest = await test.update({
       completed: 1
     }, {where: {
       id
     }})
 
-    return res.status(200).json(finishTest)
+    return res.status(200).json(finishtest)
   } catch (err) {
     return res.status(500).json({ message: 'Error', error: err })
   }
@@ -106,13 +106,13 @@ router.get('/unfinished-test', async (req, res) => {
   const { id } = req.query
 
   try {
-    const unfinishedTests = await Test.findAll({
+    const unfinishedtests = await test.findAll({
       where: {
         userId: id,
         completed: 0
     }})
 
-    return res.status(200).json(unfinishedTests)
+    return res.status(200).json(unfinishedtests)
   } catch (err) {
     return false
   }

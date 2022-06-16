@@ -2,7 +2,7 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('Results', {
+    await queryInterface.createTable('results', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -20,7 +20,7 @@ module.exports = {
     })
 
     await queryInterface.addColumn(
-      'Results',
+      'results',
       'wordId',
       {
         type: Sequelize.INTEGER,
@@ -35,7 +35,7 @@ module.exports = {
     )
 
     await queryInterface.addColumn(
-      'Results',
+      'results',
       'transcriptionId',
       {
         type: Sequelize.INTEGER,
@@ -50,7 +50,7 @@ module.exports = {
     )
 
     await queryInterface.addColumn(
-      'Results',
+      'results',
       'testId',
       {
         type: Sequelize.INTEGER,
@@ -66,6 +66,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('Results');
+    await queryInterface.dropTable('results');
   }
 };

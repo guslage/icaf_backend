@@ -4,7 +4,7 @@ const { Word } = require('../models')
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('Transcriptions', {
+    await queryInterface.createTable('transcriptions', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -18,7 +18,7 @@ module.exports = {
     })
 
     await queryInterface.addColumn(
-      'Transcriptions',
+      'transcriptions',
       'wordId',
       {
         type: Sequelize.INTEGER,
@@ -30,9 +30,26 @@ module.exports = {
         onDelete: 'SET NULL'
       }
     )
+<<<<<<< HEAD
+=======
+
+    await queryInterface.addColumn(
+      'transcriptions',
+      'userId',
+      {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
+      }
+    )
+>>>>>>> d9e512fc283cb7095715ba2a7498fd167ac04b19
     
     await queryInterface.addColumn(
-      'Transcriptions',
+      'transcriptions',
       'pseudowordId',
       {
         type: Sequelize.INTEGER,

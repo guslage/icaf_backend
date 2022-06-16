@@ -42,38 +42,37 @@ app.use('/', express.static('public'));
 app.use(fileUpload());
 
 // Rota para envio do áudio
-// app.post('/upload', (req, res) => {    
-//   if (!req.files) {
-//     return res.status(500).send({ msg: "file is not found" })
-//   }
-
-//   //Upload de arquivos para o google drive
-
-//   //Upload de arquivos para o google drive
-
-//   const myFile = req.files.file;
-
-//   const { username, word, test, wordId, testType } = req.body
-
-//   const dir = `./public/users/${username}/${testType}/test_${test}`
-
-//   if(!fs.existsSync(dir)) {
-//     fs.mkdirSync(dir, { recursive: true })
-//   }
-
-//   myFile.mv(`${__dirname}/public/users/${username}/${testType}/test_${test}/${word}.mp3`, function (err) {
-//     if (err) {
-//       console.log(err)
-//       return res.status(500).send(
-//         {
-//           status: "Error while saving file",
-//           error: err
-//         });
-//     }
-
-//     return res.send({ name: myFile.name, path: `/${myFile.name}` });
-//   });
-// })
+app.post('/upload', (req, res) => {    
+  try {
+    if (!req.files) {
+      return res.status(500).send({ msg: "file is not found" })
+    }
+    const myFile = req.files.file;
+  
+    const { username, word, test, wordId, testType } = req.body
+  
+    const dir = `./users/${username}/${testType}/test_${test}`
+  
+    if(!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true })
+    }
+  
+    myFile.mv(`${__dirname}/users/${username}/${testType}/test_${test}/${word}.mp3`, function (err) {
+      if (err) {
+        console.log(err)
+        return res.status(500).send(
+          {
+            status: "Error while saving file",
+            error: err
+          });
+      }
+  
+      return res.send({ name: myFile.name, path: `/${myFile.name}` });
+    });
+  } catch (err) {
+    return res.send({ error: err});
+  }
+})
 
 
 app.get('/audio', async (req, res) => {
@@ -156,4 +155,4 @@ app.post('/upload', async (req, res) => {
   }
 })
 
-app.listen(port, () => console.log(`App running on port ${port}`))
+app.listen(process.env.PORT || 3000)

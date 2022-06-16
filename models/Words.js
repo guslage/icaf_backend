@@ -1,5 +1,5 @@
-const Word = (sequelize, DataTypes) => {
-  return sequelize.define('Word', {
+const word = (sequelize, DataTypes) => {
+  return sequelize.define('word', {
     description: DataTypes.STRING,
     filename: DataTypes.STRING
   }, {
@@ -7,4 +7,4 @@ const Word = (sequelize, DataTypes) => {
   })
 }
 
-module.exports = Word
+module.exports = word
