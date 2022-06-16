@@ -5,7 +5,7 @@ const { test } = require('../../models')
 const moment = require('moment')
 const { google } = require('googleapis')
 
-const KEYFILEPATTH = '../../icaf-sotrage-cc16d45485e3.json'
+const KEYFILEPATTH = '../../icaf-storage-cc16d45485e3.json'
 const SCOPES = ['https://www.googleapis.com/auth/drive']
 
 const auth = new google.auth.GoogleAuth({

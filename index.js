@@ -18,7 +18,7 @@ const app = express()
 app.use(cors());
 const port = 3333
 
-const KEYFILEPATTH = `${__dirname}/icaf-sotrage-cc16d45485e3.json`
+const KEYFILEPATTH = `${__dirname}/icaf-storage-cc16d45485e3.json`
 const SCOPES = ['https://www.googleapis.com/auth/drive']
 
 const auth = new google.auth.GoogleAuth({
