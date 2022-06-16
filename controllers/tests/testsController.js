@@ -47,23 +47,23 @@ router.get('/find-tests', async (req, res) => {
 router.post('/new-test', async (req, res) => {
   const { type, completedWords, userId } = req.body
 
-  // console.log('body', req.body)
+  console.log('body', req.body)
 
-  // try {
-  //   const newDate = moment()
+  try {
+    const newDate = moment()
 
-  //   const newTest = await Test.create({
-  //     type,
-  //     date: newDate,
-  //     completedWords,
-  //     completed: 0,
-  //     userId
-  //   })
+    const newTest = await Test.create({
+      type,
+      date: newDate,
+      completedWords,
+      completed: 0,
+      userId
+    })
 
-  //   return res.status(200).json(newTest)
-  // } catch (err) {
-  //   return res.status(500).json({ message: 'Error', error: err })
-  // }
+    return res.status(200).json(newTest)
+  } catch (err) {
+    return res.status(500).json({ message: 'Error', error: err })
+  }
 
   
 })

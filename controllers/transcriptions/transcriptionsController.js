@@ -10,14 +10,13 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/new-transcription', async (req, res) => {
-  const { userId, wordId, transcription } = req.body
+  const { wordId, description } = req.body
 
   try {
     const findTranscription = await Transcription.findAll({
       where: {
-        description: transcription,
-        wordId: wordId,
-        userId: userId
+        description: description,
+        wordId: wordId
       }
     })
 
@@ -26,9 +25,8 @@ router.post('/new-transcription', async (req, res) => {
     }
 
     const newTranscription = await Transcription.create({
-      description: transcription,
-      wordId: wordId,
-      userId: userId,
+      description: description,
+      wordId: wordId
     })
 
     return res.status(200).json({ message: 'New transcription saved successfully', data: newTranscription })
@@ -40,11 +38,10 @@ router.post('/new-transcription', async (req, res) => {
 
 router.get('/find-transcriptions', async (req, res) => {
   try {
-    const { userId, wordId } = req.query
+    const { wordId } = req.query
 
     const transcriptions = await Transcription.findAll({
       where: {
-        userId,
         wordId
       }
     })
