@@ -10,19 +10,22 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/new-results', async (req, res) => {
-  const { audio, word, transcription, test } = req.body
+  const { audio, word, transcription, test, fileId } = req.body
     
   console.log(audio)
   console.log(word)
   console.log(transcription)
   console.log(test)
 
+  console.log('fileId', fileId)
+
   try {
     const newresults = await result.create({
       audio: audio,
       wordId: word,
       transcriptionId: transcription,
-      testId: test
+      testId: test,
+      fileId
     })
 
     return res.status(200).json(newresults)
@@ -34,15 +37,13 @@ router.post('/new-results', async (req, res) => {
 router.get('/get-test-results', async (req, res) => {
   const { testId, wordType } = req.query
 
-
-
   const query = wordType === "words" 
-    ? `SELECT r.audio as 'audio', w.description as 'word', t.description as 'transcription'
+    ? `SELECT r.audio as 'audio', w.description as 'word', t.description as 'transcription', r.fileId as 'fileId'
       FROM results as r 
       JOIN transcriptions as t ON r.transcriptionId = t.id
       JOIN words as w ON t.wordId = w.id
       WHERE r.testId = ${testId}`
-    : `SELECT r.audio as 'audio', pw.description as 'word', t.description as 'transcription'
+    : `SELECT r.audio as 'audio', pw.description as 'word', t.description as 'transcription', r.fileId as 'fileId'
       FROM results as r 
       JOIN transcriptions as t ON r.transcriptionId = t.id
       JOIN pseudowords as pw ON t.wordId = pw.id

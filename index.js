@@ -1,4 +1,5 @@
 const express = require('express')
+const stream = require('stream')
 
 const fileUpload = require('express-fileupload');
 const cors = require('cors')
@@ -11,6 +12,7 @@ const getStat = require('util').promisify(fs.stat);
 const { readdirSync, rename } = require('fs');
 const moment = require('moment');
 const { Console } = require('console');
+
 
 const app = express()
 app.use(cors());
@@ -98,22 +100,39 @@ app.get('/audio', async (req, res) => {
     stream.pipe(res);
 })
 
-app.get('/driveTest', async (req, res) => {
+app.post('/upload', async (req, res) => {
   try {
-    console.log(req)
+    const { username, word, test, wordId, testType } = req.body
+    const myFile = req.files.blob;
+
+    console.log('req', req.body)
+
+    console.log('myFile', myFile.data);
+
+    const name = `${username}_${testType}_test${test}_${word}.mp3`
+
+    
+
+    const file = myFile.data
+    file.lastModifiedDate = new Date();
+    file.name = name
+
+    const bufStream = new stream.PassThrough()
+    bufStream.end(file)
+
     const driveService = google.drive({
       version: 'v3',
       auth
     })
   
     const fileMetaData = {
-      name: 'test/Imagem de teste.PNG',
+      name: name,
       parents: ['17ZBmHo3mW_IfRLS-s1UTZWKMZum_CCzB']
     }
   
     const media = {
-      mimeType: 'image/png',
-      body: fs.createReadStream('diagramaaaa.PNG')
+      mimeType: 'audio/mpeg',
+      body: bufStream
     }
   
     try {
@@ -123,7 +142,9 @@ app.get('/driveTest', async (req, res) => {
         fields: 'id'
       })  
 
-      return res.send({ message: 'success' });
+      console.log(response)
+
+      return res.send({ message: 'success', fileId: response.data.id });
     } catch(err) {
       console.log(err)
       return res.send({ error: err });

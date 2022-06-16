@@ -1,8 +1,7 @@
 const transcription = (sequelize, DataTypes) => {
   return sequelize.define('transcription', {
     description: DataTypes.STRING,
-    wordId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER
+    wordId: DataTypes.INTEGER
   }, {
     timestamps: false
   })

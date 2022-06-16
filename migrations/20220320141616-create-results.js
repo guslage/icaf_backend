@@ -12,6 +12,10 @@ module.exports = {
       audio: {
         type: Sequelize.STRING(100),
         allowNull: false,
+      },
+      fileId: {
+        type: Sequelize.STRING(200),
+        allowNull: true
       }
     })
 

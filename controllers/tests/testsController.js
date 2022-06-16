@@ -47,27 +47,10 @@ router.get('/find-tests', async (req, res) => {
 router.post('/new-test', async (req, res) => {
   const { type, completedWords, userId } = req.body
 
-  // console.log('body', req.body)
+  console.log('body', req.body)
 
-  // try {
-  //   const newDate = moment()
-
-<<<<<<< HEAD
-  //   const newTest = await Test.create({
-  //     type,
-  //     date: newDate,
-  //     completedWords,
-  //     completed: 0,
-  //     userId
-  //   })
-
-  //   return res.status(200).json(newTest)
-  // } catch (err) {
-  //   return res.status(500).json({ message: 'Error', error: err })
-  // }
-
-  
-=======
+  try {
+    const newDate = moment()
     const newtest = await test.create({
       type,
       date: newDate,
@@ -80,7 +63,6 @@ router.post('/new-test', async (req, res) => {
   } catch (err) {
     return res.status(500).json({ message: 'Error', error: err })
   }
->>>>>>> d9e512fc283cb7095715ba2a7498fd167ac04b19
 })
 
 router.put('/update-test', async (req, res) => {

@@ -30,6 +30,8 @@ module.exports = {
         onDelete: 'SET NULL'
       }
     )
+<<<<<<< HEAD
+=======
 
     await queryInterface.addColumn(
       'transcriptions',
@@ -44,6 +46,7 @@ module.exports = {
         onDelete: 'SET NULL'
       }
     )
+>>>>>>> d9e512fc283cb7095715ba2a7498fd167ac04b19
     
     await queryInterface.addColumn(
       'transcriptions',
