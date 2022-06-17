@@ -10,23 +10,13 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/new-transcription', async (req, res) => {
-<<<<<<< HEAD
   const { wordId, description } = req.body
-=======
-  const { userId, wordId, description } = req.body
->>>>>>> d9e512fc283cb7095715ba2a7498fd167ac04b19
 
   try {
     const findtranscription = await transcription.findAll({
       where: {
-<<<<<<< HEAD
-        description: description,
-        wordId: wordId
-=======
         description,
         wordId: wordId,
-        userId: userId
->>>>>>> d9e512fc283cb7095715ba2a7498fd167ac04b19
       }
     })
 
@@ -34,16 +24,9 @@ router.post('/new-transcription', async (req, res) => {
       return res.status(404).json({ message: 'The requested transcription already exists' })
     }
 
-<<<<<<< HEAD
-    const newTranscription = await Transcription.create({
-      description: description,
-      wordId: wordId
-=======
     const newtranscription = await transcription.create({
       description,
       wordId: wordId,
-      userId: userId,
->>>>>>> d9e512fc283cb7095715ba2a7498fd167ac04b19
     })
 
     return res.status(200).json({ message: 'New transcription saved successfully', data: newtranscription })
