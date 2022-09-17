@@ -15,7 +15,7 @@ app.use(cors());
 
 const port = 3333
 
-const KEYFILEPATTH = `${__dirname}/icaf-sotrage-cc16d45485e3.json`
+const KEYFILEPATTH = `${__dirname}/icaf-storage-cc16d45485e3.json`
 const SCOPES = ['https://www.googleapis.com/auth/drive']
 
 const auth = new google.auth.GoogleAuth({
@@ -37,40 +37,6 @@ app.use('/pseudowords', controllers.pseudoWords)
 
 app.use('/', express.static('public'));
 app.use(fileUpload());
-
-// Rota para envio do áudio
-app.post('/upload', (req, res) => {    
-  try {
-    if (!req.files) {
-      return res.status(500).send({ msg: "file is not found" })
-    }
-    const myFile = req.files.file;
-  
-    const { username, word, test, wordId, testType } = req.body
-  
-    const dir = `./users/${username}/${testType}/test_${test}`
-  
-    if(!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true })
-    }
-  
-    myFile.mv(`${__dirname}/users/${username}/${testType}/test_${test}/${word}.mp3`, function (err) {
-      if (err) {
-        console.log(err)
-        return res.status(500).send(
-          {
-            status: "Error while saving file",
-            error: err
-          });
-      }
-  
-      return res.send({ name: myFile.name, path: `/${myFile.name}` });
-    });
-  } catch (err) {
-    return res.send({ error: err});
-  }
-})
-
 
 app.get('/audio', async (req, res) => {
   const { audio } = req.query
@@ -99,7 +65,7 @@ app.get('/audio', async (req, res) => {
 
 app.post('/upload', async (req, res) => {
   try {
-    const { username, word, test, wordId, testType } = req.body
+    const { username, word, test, testType } = req.body
     const myFile = req.files.blob;
 
     console.log('req', req.body)
@@ -107,9 +73,6 @@ app.post('/upload', async (req, res) => {
     console.log('myFile', myFile.data);
 
     const name = `${username}_${testType}_test${test}_${word}.mp3`
-
-    
-
     const file = myFile.data
     file.lastModifiedDate = new Date();
     file.name = name
@@ -143,13 +106,13 @@ app.post('/upload', async (req, res) => {
 
       return res.send({ message: 'success', fileId: response.data.id });
     } catch(err) {
-      console.log(err)
+      console.log('err', err)
       return res.send({ error: err });
     }
   } catch(err) {
-    console.log(err)
+    console.log('err', err)
     return res.send({ error2: err });
   }
 })
 
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3333)

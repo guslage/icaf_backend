@@ -5,7 +5,7 @@ const { test } = require('../../models')
 const moment = require('moment')
 const { google } = require('googleapis')
 
-const KEYFILEPATTH = '../../icaf-sotrage-cc16d45485e3.json'
+const KEYFILEPATTH = '../../icaf-storage-cc16d45485e3.json'
 const SCOPES = ['https://www.googleapis.com/auth/drive']
 
 const auth = new google.auth.GoogleAuth({
@@ -51,7 +51,6 @@ router.post('/new-test', async (req, res) => {
 
   try {
     const newDate = moment()
-
     const newtest = await test.create({
       type,
       date: newDate,
@@ -64,8 +63,6 @@ router.post('/new-test', async (req, res) => {
   } catch (err) {
     return res.status(500).json({ message: 'Error', error: err })
   }
-
-  
 })
 
 router.put('/update-test', async (req, res) => {
