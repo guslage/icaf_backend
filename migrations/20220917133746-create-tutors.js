@@ -1,43 +1,39 @@
 'use strict';
 
-const { Word } = require('../models')
-
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('transcriptions', {
+    await queryInterface.createTable('tutors', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true 
       },
-      description: {
+      email: {
+        type: Sequelize.STRING(50),
+        allowNull: false
+      },
+      name: {
+        type: Sequelize.STRING(50),
+        allowNull: false
+      },
+      username: {
+        type: Sequelize.STRING(50),
+        allowNull: false,
+      },
+      password: {
         type: Sequelize.STRING(50),
         allowNull: false,
       }
     })
 
     await queryInterface.addColumn(
-      'transcriptions',
-      'wordId',
+      'users',
+      'tutorId',
       {
         type: Sequelize.INTEGER,
         references: {
-          model: 'words',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
-      }
-    )
-    
-    await queryInterface.addColumn(
-      'transcriptions',
-      'pseudowordId',
-      {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'pseudowords',
+          model: 'tutors',
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -47,6 +43,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('transcriptions');
+    await queryInterface.dropTable('tutors');
   }
 };

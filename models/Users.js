@@ -6,8 +6,7 @@ const user = (sequelize, DataTypes) => {
     motherName: DataTypes.STRING,
     phone: DataTypes.STRING,
     residentialPhone: DataTypes.STRING,
-    username: DataTypes.STRING,
-    password: DataTypes.STRING
+    tutorId: DataTypes.INTEGER
   }, {
     timestamps: false
   })

@@ -31,18 +31,8 @@ module.exports = {
       },
       residentialPhone: {
         type: Sequelize.STRING(10)
-      },
-      username: {
-        type: Sequelize.STRING(20),
-        allowNull: false
-      },
-      password: {
-        type: Sequelize.STRING(20),
-        allowNull: false
       }
     })
-
-    
   },
 
   async down (queryInterface, Sequelize) {

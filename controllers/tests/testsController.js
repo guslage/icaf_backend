@@ -47,7 +47,7 @@ router.get('/find-tests', async (req, res) => {
 router.post('/new-test', async (req, res) => {
   const { type, completedWords, userId } = req.body
 
-  console.log('body', req.body)
+  console.log('body', type, completedWords, userId)
 
   try {
     const newDate = moment()

@@ -13,6 +13,8 @@ const getStat = require('util').promisify(fs.stat);
 const app = express()
 app.use(cors());
 
+const { user } = require('./models')
+
 const port = 3333
 
 const KEYFILEPATTH = `${__dirname}/icaf-storage-cc16d45485e3.json`
@@ -33,6 +35,7 @@ app.use('/transcriptions', controllers.transcriptions)
 app.use('/tests', controllers.tests)
 app.use('/results', controllers.results)
 app.use('/pseudowords', controllers.pseudoWords)
+app.use('/tutors', controllers.tutors)
 
 
 app.use('/', express.static('public'));
@@ -65,14 +68,14 @@ app.get('/audio', async (req, res) => {
 
 app.post('/upload', async (req, res) => {
   try {
-    const { username, word, test, testType } = req.body
+    const { userId, word, test, testType } = req.body
     const myFile = req.files.blob;
 
     console.log('req', req.body)
 
     console.log('myFile', myFile.data);
 
-    const name = `${username}_${testType}_test${test}_${word}.mp3`
+    const name = `${userId}_${testType}_test${test}_${word}.mp3`
     const file = myFile.data
     file.lastModifiedDate = new Date();
     file.name = name

@@ -11,33 +11,51 @@ router.get('/', async (req, res) => {
   res.status(200).json(users)
 })
 
-router.post('/find-user', async (req, res) => {
-  const { username, password } = req.body
+router.post('/find-user-by-tutor', async (req, res) => {
+  const { tutorId } = req.body
 
-  const finduser = await user.findOne({
+  const findUsers = await user.findAll({
     where: {
-      username,
-      password
+      tutorId
     }
   })
 
-  if (finduser) {
-    return res.status(200).json({ message: 'user found!', data: finduser })
+  if (findUsers) {
+    return res.status(200).json({ message: 'users found!', data: findUsers })
   }
 
   return res.status(404).json({ message: 'Invalid data.' })
-
 })
 
+// router.post('/find-user', async (req, res) => {
+//   const { username, password } = req.body
+
+//   const finduser = await user.findOne({
+//     where: {
+//       username,
+//       password
+//     }
+//   })
+
+//   if (finduser) {
+//     return res.status(200).json({ message: 'user found!', data: finduser })
+//   }
+
+//   return res.status(404).json({ message: 'Invalid data.' })
+
+// })
+
 router.post('/new-user', async (req, res) => {
-  const { name, school, birthDate, motherName, phone, residentialPhone, username, password } = req.body
+  const { name, school, birthDate, motherName, phone, residentialPhone, tutorId } = req.body
 
   const newDate = moment(birthDate).format("MM-DD-YYYY")
 
   const finduser = await user.findAll({
     where: {
-      username,
-      password
+      name,
+      motherName,
+      birthDate,
+      tutorId
     }
   })
 
@@ -52,15 +70,8 @@ router.post('/new-user', async (req, res) => {
     motherName,
     phone,
     residentialPhone,
-    username,
-    password
+    tutorId
   })
-
-  const userDir = `./public/users/${username}`
-
-  if (!fs.existsSync(userDir)) {
-    fs.mkdirSync(userDir, { recursive: true })
-  }
 
   return res.status(200).json({ message: 'user registered sucessfully!' })
 })

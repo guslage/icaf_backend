@@ -29,7 +29,7 @@ router.post('/new-transcription', async (req, res) => {
       wordId: wordId,
     })
 
-    return res.status(200).json({ message: 'New transcription saved successfully', data: newTranscription })
+    return res.status(200).json({ message: 'New transcription saved successfully', data: newtranscription })
   } catch (err) {
     console.log(err)
     return res.status(500).json(err)
