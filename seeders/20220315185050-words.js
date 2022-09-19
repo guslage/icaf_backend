@@ -7,6 +7,7 @@ module.exports = {
       'abelha',
       'anel',
       'aranha',
+      'árvore',
       'cabelo',
       'cachorro',
       'cama',
@@ -16,7 +17,6 @@ module.exports = {
       'celular',
       'chapéu',
       'chave',
-      'chiclete',
       'chiclete',
       'chuva',
       'cobra',
@@ -75,9 +75,7 @@ module.exports = {
       'sol',
       'soprar',
       'tapete',
-      'tapete',
       'tenis',
-      'tesoura',
       'tesoura',
       'tigre',
       'travesseiro',
@@ -90,24 +88,103 @@ module.exports = {
       'vassoura',
       'zebra',
       'zero',
-      'árvore'
     ]
 
-    for (const word of words) {
+    const silables = [
+      ['a', 'ba', 'ca', 'xi'],
+      ['a', 'be', 'lha'],
+      ['a', 'nel'],
+      ['a', 'ra', 'nha'],
+      ['ár', 'vo', 're'],
+      ['ca', 'be', 'lo'],
+      ['ca', 'chor', 'ro'],
+      ['ca', 'ma'],
+      ['ca', 'mi', 'nhão'],
+      ['car', 'ro'],
+      ['ca', 'sa'],
+      ['ce', 'lu', 'lar'],
+      ['cha', 'péu'],
+      ['cha', 've'],
+      ['chi', 'cle', 'te'],
+      ['chu', 'va'],
+      ['co', 'bra'],
+      ['co', 'lher'],
+      ['co', 'po'],
+      ['cri', 'an', 'ça'],
+      ['cruz'],
+      ['de', 'do'],
+      ['den', 'te'],
+      ['den', 'te'],
+      ['dra', 'gão'],
+      ['es', 'co', 'va'],
+      ['es', 'tre', 'la'],
+      ['ex', 'plo', 'são'],
+      ['fa', 'ca'],
+      ['fle', 'cha'],
+      ['flor'],
+      ['fo', 'gão'],
+      ['for', 'mi', 'ga'],
+      ['fral', 'da'],
+      ['ga', 'li', 'nha'],
+      ['ga', 'to'],
+      ['gi', 'ra', 'fa'],
+      ['i', 'gre', 'ja'],
+      ['ja', 'ca', 'ré'],
+      ['ja', 'ne', 'la'],
+      ['la', 'ran', 'ja'],
+      ['li', 'vro'],
+      ['lá', 'pis'],
+      ['lín', 'gua'],
+      ['ma', 'ca', 'co'],
+      ['ma', 'çã'],
+      ['me', 'sa'],
+      ['mi', 'cro', 'fo', 'ne'],
+      ['mo', 'ran', 'go'],
+      ['mos', 'ca'],
+      ['mão'],
+      ['na', 'riz'],
+      ['nu', 'vem'],
+      ['o', 'lha'],
+      ['o', 'vo'],
+      ['pa', 'ne', 'la'],
+      ['pa', 'to'],
+      ['pe', 'dra'],
+      ['pei', 'xe'],
+      ['pla', 'ca'],
+      ['plan', 'ta'],
+      ['pra', 'to'],
+      ['pé'],
+      ['ra', 'to'],
+      ['re', 'fri', 'ge', 'ran', 'te'],
+      ['re', 'ló', 'gio'],
+      ['sa', 'pa', 'to'],
+      ['sa', 'po'],
+      ['so', 'fá'],
+      ['sol'],
+      ['so', 'prar'],
+      ['ta', 'pe', 'te'],
+      ['te', 'nis'],
+      ['te', 'sou', 'ra'],
+      ['ti', 'gre'],
+      ['tra', 'ves', 'sei', 'ro'],
+      ['trem'],
+      ['tri', 'gre'],
+      ['um', 'bi', 'go'],
+      ['u', 'nha'],
+      ['u', 'va'],
+      ['va', 'ca'],
+      ['vas', 'sou', 'ra'],
+      ['ze', 'bra'],
+      ['ze', 'ro']
+    ]
+
+    for (const [index, value] of words.entries()) {
       await queryInterface.bulkInsert('Words', [{
-        description: word,
-        filename: `/assets/images/words/${word}.png`
+        description: value,
+        silables: JSON.stringify(silables[index]),
+        filename: `/assets/images/words/${value}.png`
       }], {})
     }
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
   },
 
   async down(queryInterface, Sequelize) {

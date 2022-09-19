@@ -34,25 +34,4 @@ router.get('/find-words', async (req, res) => {
   return res.status(200).json(words)
 })
 
-router.post('/new-word', async (req, res) => {
-  const { wordId, newWord } = req.body
-
-  const findWord = await word.findAll({
-    where: {
-      description: newWord
-    }
-  })
-
-  if (findWord.length > 0) {
-    return res.status(404).json({ message: 'The requested word already exists' })
-  }
-
-  await word.create({
-    id: wordId,
-    description: newWord
-  })
-
-  return res.status(200).json({ message: 'Word saved successfully' })
-})
-
 module.exports = router
