@@ -1,6 +1,7 @@
 const result = (sequelize, DataTypes) => {
   return sequelize.define('result', {
     audio: DataTypes.STRING,
+    silables: DataTypes.STRING,
     wordId: DataTypes.INTEGER,
     transcriptionId: DataTypes.INTEGER,
     testId: DataTypes.INTEGER,

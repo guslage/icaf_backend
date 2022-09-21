@@ -10,18 +10,14 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/new-results', async (req, res) => {
-  const { audio, word, transcription, test, fileId } = req.body
-    
-  console.log(audio)
-  console.log(word)
-  console.log(transcription)
-  console.log(test)
+  const { audio, silables, word, transcription, test, fileId } = req.body
 
   console.log('fileId', fileId)
 
   try {
     const newresults = await result.create({
       audio: audio,
+      silables,
       wordId: word,
       transcriptionId: transcription,
       testId: test,
@@ -38,7 +34,7 @@ router.get('/get-test-results', async (req, res) => {
   const { testId, wordType } = req.query
 
   const query = wordType === "words" 
-    ? `SELECT r.audio as 'audio', w.description as 'word', t.description as 'transcription', r.fileId as 'fileId'
+    ? `SELECT r.audio as 'audio', w.description as 'word', r.silables, t.description as 'transcription', r.fileId as 'fileId'
       FROM results as r 
       JOIN transcriptions as t ON r.transcriptionId = t.id
       JOIN words as w ON t.wordId = w.id
@@ -50,8 +46,6 @@ router.get('/get-test-results', async (req, res) => {
       WHERE r.testId = ${testId}` 
 
   const results = await sequelize.query(query, {type: sequelize.QueryTypes.SELECT})
-
-  console.log('res',results)
 
   return res.status(200).json(results)
 })

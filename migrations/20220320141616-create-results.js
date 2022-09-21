@@ -13,6 +13,10 @@ module.exports = {
         type: Sequelize.STRING(100),
         allowNull: false,
       },
+      silables: {
+        type: Sequelize.STRING(50),
+        allowNull: true,
+      },
       fileId: {
         type: Sequelize.STRING(200),
         allowNull: true
