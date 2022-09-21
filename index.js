@@ -71,10 +71,6 @@ app.post('/upload', async (req, res) => {
     const { userId, word, test, testType } = req.body
     const myFile = req.files.blob;
 
-    console.log('req', req.body)
-
-    console.log('myFile', myFile.data);
-
     const name = `${userId}_${testType}_test${test}_${word}.mp3`
     const file = myFile.data
     file.lastModifiedDate = new Date();
