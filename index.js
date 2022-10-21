@@ -68,10 +68,13 @@ app.get('/audio', async (req, res) => {
 
 app.post('/upload', async (req, res) => {
   try {
-    const { userId, word, test, testType } = req.body
+    const { userId, word, test, testType, fileIndex } = req.body
     const myFile = req.files.blob;
 
-    const name = `${userId}_${testType}_test${test}_${word}.mp3`
+    const name = testType === "diadococinesia" 
+      ? `${userId}_${testType}_test${test}_${word}_${fileIndex}.mp3` 
+      : `${userId}_${testType}_test${test}_${word}.mp3` 
+
     const file = myFile.data
     file.lastModifiedDate = new Date();
     file.name = name
