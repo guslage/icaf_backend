@@ -36,6 +36,7 @@ app.use('/tests', controllers.tests)
 app.use('/results', controllers.results)
 app.use('/pseudowords', controllers.pseudoWords)
 app.use('/tutors', controllers.tutors)
+app.use('/diadococinesiaResults', controllers.diadococinesiaResults)
 
 
 app.use('/', express.static('public'));

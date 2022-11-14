@@ -5,6 +5,7 @@ const testController = require('./tests/testsController')
 const resultController = require('./results/resultsControllers')
 const pseudowordController = require('./pseudowords/pseudowordsController')
 const tutorController = require('./tutors/tutorsController')
+const diadococinesiaResultController = require('./diadococinesiaResults/diadococinesiaResultsController')
 
 module.exports = {
   transcriptions: transcriptionController,
@@ -13,6 +14,7 @@ module.exports = {
   tests: testController,
   results: resultController,
   pseudoWords: pseudowordController,
-  tutors: tutorController
+  tutors: tutorController,
+  diadococinesiaResults: diadococinesiaResultController
 }
 
