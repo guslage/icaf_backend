@@ -11,9 +11,7 @@ const fs = require('fs')
 const getStat = require('util').promisify(fs.stat);
 
 const app = express()
-app.use(cors({
-  'Access-Control-Allow-Origin': '*'
-}));
+app.use();
 
 const { user } = require('./models')
 
@@ -121,5 +119,3 @@ app.post('/upload', async (req, res) => {
 })
 
 app.listen(process.env.PORT || 3333)
-
-module.exports = app;
