@@ -119,3 +119,5 @@ app.post('/upload', async (req, res) => {
 })
 
 app.listen(process.env.PORT || 3333)
+
+module.exports = app;
