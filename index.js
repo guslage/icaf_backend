@@ -11,7 +11,9 @@ const fs = require('fs')
 const getStat = require('util').promisify(fs.stat);
 
 const app = express()
-app.use(cors());
+app.use(cors({
+  'Access-Control-Allow-Origin': '*'
+}));
 
 const { user } = require('./models')
 
